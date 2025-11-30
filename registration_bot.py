@@ -23,8 +23,7 @@ else:
 user_data = {}
 @bot.message_handler(commands=['start', 's'])
 def start(message):
-    user_data[message.from_user.id] = {}
-    user_data[message.from_user.id]['state'] = State.ASK_NAME
+    user_data[message.from_user.id] = {'state': State.ASK_NAME}
     bot.send_message(message.chat.id, 'Давайте зарегистрируемся. Как вас зовут?')
 
 @bot.message_handler(commands=['cancel'])
