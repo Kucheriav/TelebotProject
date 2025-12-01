@@ -6,9 +6,11 @@ from typing import Dict
 
 from my_markup import *
 from user_data import *
-from info_reader import *
+from db_functions import *
+
 
 load_dotenv()
+init_scenario()
 TOKEN = os.getenv('TOKEN')
 if not TOKEN:
     print('Внимание: TELEGRAM_TOKEN не задан. Установите переменную окружения перед запуском.')
@@ -53,8 +55,8 @@ def handle_callback(call):
     if user_data.state == State.NONE:
         bot.send_message(call.chat.id, 'Нажми старт')
     elif user_data.state == State.ASK_DETAILS:
-        this_info = all_info[user_data.city][call.data]
-        bot.send_message(chat_id=call.message.chat.id, text=this_info)
+        details = get_details(user_data.city, call.data)
+        bot.send_message(chat_id=call.message.chat.id, text=details)
 
 
 while True:
