@@ -62,7 +62,7 @@ def get_details(city, object_type):
 
 
 if __name__ == '__main__':
-    drop_db(DB_NAME)
+    # drop_db(DB_NAME)
     create_db(DB_NAME)
     insert_info_from_file(DB_NAME, FILE_INFO_NAME)
     select_all(DB_NAME)
